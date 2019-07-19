@@ -7,7 +7,16 @@ struct userDetails {
 	char username[10];
 	char password[10];
 	int pin;
+	int balance;
 }user[5];
+
+int j;
+
+void welcome();
+void account();
+
+
+
 
 //TODO :- To clear the screen.
 
@@ -31,7 +40,63 @@ void newScreen() {
 }
 
 
+//TODO :- Quit function.
+
+void quit(){
+	char ans[5];
+	newScreen();
+	printf("\033[34mARE YOU SURE YOU WANT TO EXIT?\n->\033[0m\n");
+	scanf("%s",ans);
+	if (tolower(ans[0])=='y'){
+		printf("\n\n\n\n\033[35mTHANK YOU\033[0m\n\n");
+	} else {
+		welcome();
+	}
+}
+
+
+//TODO :- Balance function.
+
+void balance(){
+	newScreen();
+	printf("\033[34mCURRENT BALANCE - %d\033[0m\n\n\n",user[j].balance);
+	account();
+}
+
+
+//TODO :- Transfer account.
+
+void transfer(){
+	newScreen();
+	printf("Hey\n");
+}
+
+
+//TODO :- Control the account part.
+
+void account() {
+	int inp;
+	newScreen();
+	printf("\033[34mWELCOME %s!\033[0m\n\n\n\n",user[j].username);
+	printf("\033[34m1 -> BALANCE INQUIRY\033[0m\n\n");
+	printf("\033[34m2 -> TRANSFER\033[0m\n\n\n\n");
+	printf("\033[33mENTER YOUR CHOICE - \033[0m");
+	scanf("%d",&inp);
+	switch(inp){
+		case 1:
+			balance();
+			break;
+		case 2:
+			transfer();
+			break;
+		default:
+			account();
+	}
+}
+
+
 //TODO :- Control the log-in part.
+
 void login(){
 	newScreen();
 	char un[10], pwrd[10];
@@ -39,10 +104,9 @@ void login(){
 	scanf("%s",un);
 	printf("\033[31mENTER PASSWORD - \033[0m");
 	scanf("%s",pwrd);
-	for(int i=0; i<5; i++){
-		if(strcmp(un,user[i].username)==0 && strcmp(pwrd,user[i].password)==0){
-			printf("Login Successful\n");
-
+	for(j=0; j<5; j++){
+		if(strcmp(un,user[j].username)==0 && strcmp(pwrd,user[j].password)==0){
+			account();
 			break;
 		}
 	}
@@ -50,18 +114,32 @@ void login(){
 
 
 //TODO :- Control the resgistering part.
+
 void reg(){
 	static int i=0;
+	char ans[5];
 	newScreen();
-	printf("\033[34mENTER NEW USERNAME - \033[0m");
+	printf("\033[33mENTER NEW USER NAME - \033[0m");
 	scanf("%s",user[i].username);
-	printf("\033[34mENTER NEW PASSWORD - \033[0m");
+	printf("\033[33mENTER NEW PASSWORD - \033[0m");
 	scanf("%s",user[i].password);
-	printf("\033[34mENTER NEW PIN - \033[0m");
+	printf("\033[33mENTER NEW PIN - \033[0m");
 	scanf("%d",&user[i].pin);
+	user[i].balance = 100;
 	i++;
-	printf("\n\n\033[34mREGISTERED SUCCESSFULLY! YOU CAN NOW LOG IN\033[0m\n");
-	login();
+	printf("\n\n\033[34mREGISTERED SUCCESSFULLY! YOU CAN NOW LOG IN\033[0m\n\n\n");
+	printf("\033[34mDO YOU WANT TO LOGIN?\n->\033[0m\n");
+	scanf("%s",ans);
+	if(tolower(ans[0])=='y'){
+	    login();
+	}
+	else if(tolower(ans[0])=='n'){
+	    quit();
+	}
+	else{
+	    welcome();
+	}
+	return;
 }
 
 
