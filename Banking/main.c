@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
+#include "credentials.h"
 
 //TODO :- To clear the screen.
 
@@ -27,14 +29,23 @@ void newScreen() {
 //TODO :- Control the log-in part.
 void login(){
 	newScreen();
-	printf("Login");
+
 }
 
 
 //TODO :- Control the resgistering part.
 void reg(){
+	static int i=0;
 	newScreen();
-	printf("Register");
+	printf("\033[34mENTER NEW USER NAME - \033[0m");
+	scanf("%s",user[i].username);
+	printf("\033[34mENTER NEW PASSWORD - \033[0m");
+	scanf("%s",user[i].password);
+	printf("\033[34mENTER NEW PIN - \033[0m");
+	scanf("%d",&user[i].pin);
+	i++;
+	printf("\n\n\033[34mREGISTERED SUCCESSFULLY! YOU CAN NOW LOG IN\033[0m\n");
+	return;
 }
 
 
