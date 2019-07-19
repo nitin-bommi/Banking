@@ -2,7 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "credentials.h"
+
+struct userDetails {
+	char username[10];
+	char password[10];
+	int pin;
+}user[5];
 
 //TODO :- To clear the screen.
 
@@ -29,7 +34,18 @@ void newScreen() {
 //TODO :- Control the log-in part.
 void login(){
 	newScreen();
+	char un[10], pwrd[10];
+	printf("\033[31mENTER USERNAME - \033[0m");
+	scanf("%s",un);
+	printf("\033[31mENTER PASSWORD - \033[0m");
+	scanf("%s",pwrd);
+	for(int i=0; i<5; i++){
+		if(strcmp(un,user[i].username)==0 && strcmp(pwrd,user[i].password)==0){
+			printf("Login Successful\n");
 
+			break;
+		}
+	}
 }
 
 
@@ -37,7 +53,7 @@ void login(){
 void reg(){
 	static int i=0;
 	newScreen();
-	printf("\033[34mENTER NEW USER NAME - \033[0m");
+	printf("\033[34mENTER NEW USERNAME - \033[0m");
 	scanf("%s",user[i].username);
 	printf("\033[34mENTER NEW PASSWORD - \033[0m");
 	scanf("%s",user[i].password);
@@ -45,7 +61,7 @@ void reg(){
 	scanf("%d",&user[i].pin);
 	i++;
 	printf("\n\n\033[34mREGISTERED SUCCESSFULLY! YOU CAN NOW LOG IN\033[0m\n");
-	return;
+	login();
 }
 
 
