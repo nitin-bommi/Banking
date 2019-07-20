@@ -132,7 +132,7 @@ void check(){
 	}
 	if(cnt>1){
 		printf("\033[31mTHIS USERNAME ALREADY EXISTS.\033[0m\n\n");
-		printf("\033[33mTRY AGAIN?\033[0m");
+		printf("\033[35mTRY AGAIN?\033[0m");
 		scanf("%s",inp);
 		if (tolower(inp[0])=='y'){
 			printf("\033[33mENTER NEW USER NAME - \033[0m");
@@ -145,7 +145,7 @@ void check(){
 		user[z].balance = 100;
 		z++;
 		printf("\n\n\033[34mREGISTERED SUCCESSFULLY! YOU CAN NOW LOG IN\033[0m\n\n\n");
-		printf("\033[34mDO YOU WANT TO LOGIN (Press any other key to go to the main screen) - \033[0m");
+		printf("\033[35mDO YOU WANT TO LOGIN (Press any other key to go to the main screen) - \033[0m");
 		scanf("%s",ans);
 		if(tolower(ans[0])=='y'){
 		    login();
