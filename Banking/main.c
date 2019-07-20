@@ -58,7 +58,7 @@ void quit(){
 void balance(){
 	newScreen();
 	char ans[5];
-	printf("\033[34mCURRENT BALANCE - %d\033[0m\n\n\n",user[j].balance);
+	printf("\033[34mCURRENT BALANCE - $ %d\033[0m\n\n\n",user[j].balance);
 	printf("\033[34mGO BACK - \033[0m");
 	scanf("%s",ans);
 	if(tolower(ans[0])=='y'){
@@ -119,6 +119,25 @@ void account(){
 }
 
 
+//TODO :- Check for vallid user name and password.
+
+void check(char u[], char p[]){
+	char ans[5];
+	for(int a=0; a<5; a++){
+		if(strcmp(user[a].username,u)==0){
+			printf("\033[31mTHIS USERNAME ALREADY EXISTS.\033[0m\n\n");
+			printf("\033[33mTRY AGAIN?\033[0m");
+			scanf("%s",ans);
+			if (tolower(ans[0])=='y'){
+				//reg();
+			} else {
+				quit();
+			}
+		}
+	}
+}
+
+
 //TODO :- Control the log-in part.
 
 void login(){
@@ -141,27 +160,46 @@ void login(){
 
 void reg(){
 	static int i=0;
+	int cnt=0;
 	char ans[5];
 	newScreen();
 	printf("\033[33mENTER NEW USER NAME - \033[0m");
 	scanf("%s",user[i].username);
 	printf("\033[33mENTER NEW PASSWORD - \033[0m");
 	scanf("%s",user[i].password);
-	printf("\033[33mENTER NEW PIN - \033[0m");
+	printf("\033[33mENTER NEW 4-DIGIT PIN - \033[0m");
 	scanf("%d",&user[i].pin);
-	user[i].balance = 100;
-	i++;
-	printf("\n\n\033[34mREGISTERED SUCCESSFULLY! YOU CAN NOW LOG IN\033[0m\n\n\n");
-	printf("\033[34mDO YOU WANT TO LOGIN (Press any other key to go to the main screen) - \033[0m");
-	scanf("%s",ans);
-	if(tolower(ans[0])=='y'){
-	    login();
+	char inp[5];
+	for(int a=0; a<5; a++){
+		if(strcmp(user[a].username,user[i].username)==0){
+			cnt++;	
+		}
 	}
-	else if(tolower(ans[0])=='n'){
-	    quit();
-	}
-	else{
-	    welcome();
+	if(cnt>1){
+		printf("\033[31mTHIS USERNAME ALREADY EXISTS.\033[0m\n\n");
+		printf("\033[33mTRY AGAIN?\033[0m");
+		scanf("%s",inp);
+		if (tolower(inp[0])=='y'){
+			printf("\033[33mENTER NEW USER NAME - \033[0m");
+			scanf("%s",user[i].username);
+		} else {
+			quit();
+		}
+	} else {
+		user[i].balance = 100;
+		i++;
+		printf("\n\n\033[34mREGISTERED SUCCESSFULLY! YOU CAN NOW LOG IN\033[0m\n\n\n");
+		printf("\033[34mDO YOU WANT TO LOGIN (Press any other key to go to the main screen) - \033[0m");
+		scanf("%s",ans);
+		if(tolower(ans[0])=='y'){
+		    login();
+		}
+		else if(tolower(ans[0])=='n'){
+		    quit();
+		}
+		else{
+		    welcome();
+		}
 	}
 	return;
 }
@@ -172,7 +210,7 @@ void reg(){
 void welcome() {
 	newScreen();
 
-	printf("\t\t\033[34mWELCOME TO BANKING!\033[0m\n");
+	printf("\033[34mWELCOME TO BANKING!\033[0m\n");
 	printf("\n\n\n\033[33m1 -> LOG IN\n\n2 -> REGISTER\033[0m\n\n\n\n");
 
 	int option;
