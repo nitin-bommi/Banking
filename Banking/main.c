@@ -44,10 +44,10 @@ void newScreen() {
 void quit(){
 	char ans[5];
 	newScreen();
-	printf("\033[34mARE YOU SURE YOU WANT TO EXIT - \033[0m\n");
+	printf("\033[35mARE YOU SURE YOU WANT TO EXIT - \033[0m\n");
 	scanf("%s",ans);
 	if (tolower(ans[0])=='y'){
-		printf("\n\n\n\n\033[35mTHANK YOU\033[0m\n\n");
+		printf("\n\n\n\n\033[34mTHANK YOU\033[0m\n\n");
 	} else {
 		welcome();
 	}
@@ -60,7 +60,7 @@ void balance(){
 	newScreen();
 	char ans[5];
 	printf("\033[34mCURRENT BALANCE - $ %d\033[0m\n\n\n",user[j].balance);
-	printf("\033[34mGO BACK - \033[0m");
+	printf("\033[35mGO BACK - \033[0m");
 	scanf("%s",ans);
 	if(tolower(ans[0])=='y'){
 	    account();
@@ -85,7 +85,7 @@ void transfer(){
 			if(code==user[j].pin){
 				user[z].balance+=amount;
 				user[j].balance-=amount;
-				printf("\n\033[33mTRANSACTION SUCCESSFUL\033[0m");
+				printf("\n\033[34mTRANSACTION SUCCESSFUL\033[0m");
 				break;
 			}
 		}
@@ -99,7 +99,7 @@ void transfer(){
 void account(){
 	int inp;
 	newScreen();
-	printf("\033[34mWELCOME %s!\033[0m\n\n\n\n",user[j].username);
+	printf("\033[32mWELCOME %s!\033[0m\n\n\n\n",user[j].username);
 	printf("\033[34m1 -> BALANCE INQUIRY\033[0m\n\n");
 	printf("\033[34m2 -> TRANSFER\033[0m\n\n\n\n");
 	printf("\033[34m3 -> LOG OUT\033[0m\n\n\n\n");
@@ -124,7 +124,7 @@ void account(){
 
 void check(){
 	char inp[5],ans[5];
-	int cnt;
+	int cnt=0;
 	for(int a=0; a<5; a++){
 		if(strcmp(user[a].username,user[z].username)==0){
 			cnt++;	
