@@ -207,8 +207,8 @@ void reg(){
 void welcome() {
 	newScreen();
 
-	printf("\033[34mWELCOME TO BANKING!\033[0m\n");
-	printf("\n\n\n\033[33m1 -> LOG IN\n\n2 -> REGISTER\033[0m\n\n\n\n");
+	printf("\033[32mWELCOME TO BANKING!\033[0m\n");
+	printf("\n\n\n\033[34m1 -> LOG IN\n\n2 -> REGISTER\033[0m\n\n\n\n");
 
 	int option;
 	printf("\033[35mENTER YOUR OPTION :- \033[0m");
