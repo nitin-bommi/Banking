@@ -17,6 +17,41 @@ void account();
 void login();
 
 
+//TODO :- To clear the screen.
+
+void clrscr() {
+    system("@cls||clear");
+}
+
+
+//TODO :- Every time the user provides an input, call the new screen.
+
+void newScreen() {
+	clrscr();
+	int width = 132;
+	char str[] = "\033[31;1;51;4mBANKING\033[0m\n";
+	int length = sizeof(str) - 1;
+	int pad = (length >= width) ? 0 : (width - length) / 2;
+	printf("%*.*s%s\n", pad, pad, " ", str);
+	for(int i=0; i<7; i++){
+		printf("\n");
+	}
+}
+
+
+//TODO :- Quit function.
+
+void quit(){
+	char ans[5];
+	newScreen();
+	printf("\033[34mARE YOU SURE YOU WANT TO EXIT - \033[0m\n");
+	scanf("%s",ans);
+	if (tolower(ans[0])=='y'){
+		printf("\n\n\n\n\033[35mTHANK YOU\033[0m\n\n");
+	} else {
+		welcome();
+	}
+}
 
 
 //TODO :- Balance function.
