@@ -10,10 +10,11 @@ struct userDetails {
 	int balance;
 }user[5];
 
-int j;
+int j,z;
 
 void welcome();
 void account();
+void login();
 
 
 //TODO :- To clear the screen.
@@ -121,57 +122,11 @@ void account(){
 
 //TODO :- Check for vallid user name and password.
 
-void check(char u[], char p[]){
-	char ans[5];
+void check(){
+	char inp[5],ans[5];
+	int cnt;
 	for(int a=0; a<5; a++){
-		if(strcmp(user[a].username,u)==0){
-			printf("\033[31mTHIS USERNAME ALREADY EXISTS.\033[0m\n\n");
-			printf("\033[33mTRY AGAIN?\033[0m");
-			scanf("%s",ans);
-			if (tolower(ans[0])=='y'){
-				//reg();
-			} else {
-				quit();
-			}
-		}
-	}
-}
-
-
-//TODO :- Control the log-in part.
-
-void login(){
-	newScreen();
-	char un[10], pwrd[10];
-	printf("\033[31mENTER USERNAME - \033[0m");
-	scanf("%s",un);
-	printf("\033[31mENTER PASSWORD - \033[0m");
-	scanf("%s",pwrd);
-	for(j=0; j<5; j++){
-		if(strcmp(un,user[j].username)==0 && strcmp(pwrd,user[j].password)==0){
-			account();
-			break;
-		}
-	}
-}
-
-
-//TODO :- Control the resgistering part.
-
-void reg(){
-	static int i=0;
-	int cnt=0;
-	char ans[5];
-	newScreen();
-	printf("\033[33mENTER NEW USER NAME - \033[0m");
-	scanf("%s",user[i].username);
-	printf("\033[33mENTER NEW PASSWORD - \033[0m");
-	scanf("%s",user[i].password);
-	printf("\033[33mENTER NEW 4-DIGIT PIN - \033[0m");
-	scanf("%d",&user[i].pin);
-	char inp[5];
-	for(int a=0; a<5; a++){
-		if(strcmp(user[a].username,user[i].username)==0){
+		if(strcmp(user[a].username,user[z].username)==0){
 			cnt++;	
 		}
 	}
@@ -181,13 +136,14 @@ void reg(){
 		scanf("%s",inp);
 		if (tolower(inp[0])=='y'){
 			printf("\033[33mENTER NEW USER NAME - \033[0m");
-			scanf("%s",user[i].username);
+			scanf("%s",user[z].username);
+			check();
 		} else {
 			quit();
 		}
 	} else {
-		user[i].balance = 100;
-		i++;
+		user[z].balance = 100;
+		z++;
 		printf("\n\n\033[34mREGISTERED SUCCESSFULLY! YOU CAN NOW LOG IN\033[0m\n\n\n");
 		printf("\033[34mDO YOU WANT TO LOGIN (Press any other key to go to the main screen) - \033[0m");
 		scanf("%s",ans);
@@ -201,6 +157,47 @@ void reg(){
 		    welcome();
 		}
 	}
+}
+
+
+//TODO :- Control the log-in part.
+
+void login(){
+	newScreen();
+	char un[10], pwrd[10],inp[5];
+	printf("\033[31mENTER USERNAME - \033[0m");
+	scanf("%s",un);
+	printf("\033[31mENTER PASSWORD - \033[0m");
+	scanf("%s",pwrd);
+	for(j=0; j<5; j++){
+		if(strcmp(un,user[j].username)==0 && strcmp(pwrd,user[j].password)==0){
+			account();
+			break;
+		}
+	}
+	printf("\n\n\n\033[31mINCORRECT CREDENTIALS!\033[0m");
+	printf("\033[33mTRY AGAIN?\033[0m");
+	scanf("%s",inp);
+	if (tolower(inp[0])=='y'){
+		login();
+	} else {
+		quit();
+	}
+
+}
+
+
+//TODO :- Control the resgistering part.
+
+void reg(){
+	newScreen();
+	printf("\033[33mENTER NEW USER NAME - \033[0m");
+	scanf("%s",user[z].username);
+	printf("\033[33mENTER NEW PASSWORD - \033[0m");
+	scanf("%s",user[z].password);
+	printf("\033[33mENTER NEW 4-DIGIT PIN - \033[0m");
+	scanf("%d",&user[z].pin);
+	check();
 	return;
 }
 
