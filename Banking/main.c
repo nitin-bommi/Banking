@@ -94,6 +94,18 @@ void transfer(){
 }
 
 
+
+void changepin(){
+    newScreen();
+    int npin;
+    printf("\033[33mENTER NEW PIN - \033[0m");
+    scanf("%d",&npin);
+    user[j].pin=npin;
+    printf("\033[34mPIN HAS BEEN UPDATED SUCCESSFULLY.\033[0m\n");
+    account();
+}
+
+
 //TODO :- Control the account part.
 
 void account(){
@@ -103,6 +115,7 @@ void account(){
 	printf("\033[34m1 -> BALANCE INQUIRY\033[0m\n\n");
 	printf("\033[34m2 -> TRANSFER\033[0m\n\n\n\n");
 	printf("\033[34m3 -> LOG OUT\033[0m\n\n\n\n");
+	printf("\033[34m4 -> LOG OUT\033[0m\n\n\n");
 	printf("\033[33mENTER YOUR CHOICE - \033[0m");
 	scanf("%d",&inp);
 	switch(inp){
@@ -113,6 +126,9 @@ void account(){
 			transfer();
 			break;
 		case 3:
+		    	changepin();
+		    	break;
+		case 4:
 			welcome();
 		default:
 			account();
@@ -165,9 +181,9 @@ void check(){
 void login(){
 	newScreen();
 	char un[10], pwrd[10],inp[5];
-	printf("\033[31mENTER USERNAME - \033[0m");
+	printf("\033[33mENTER USERNAME - \033[0m");
 	scanf("%s",un);
-	printf("\033[31mENTER PASSWORD - \033[0m");
+	printf("\033[33mENTER PASSWORD - \033[0m");
 	scanf("%s",pwrd);
 	for(j=0; j<5; j++){
 		if(strcmp(un,user[j].username)==0 && strcmp(pwrd,user[j].password)==0){
@@ -176,7 +192,7 @@ void login(){
 		}
 	}
 	printf("\n\n\n\033[31mINCORRECT CREDENTIALS!\033[0m");
-	printf("\033[33mTRY AGAIN?\033[0m");
+	printf("\033[35mTRY AGAIN?\033[0m");
 	scanf("%s",inp);
 	if (tolower(inp[0])=='y'){
 		login();
@@ -208,7 +224,7 @@ void welcome() {
 	newScreen();
 
 	printf("\033[32mWELCOME TO BANKING!\033[0m\n");
-	printf("\n\n\n\033[34m1 -> LOG IN\n\n2 -> REGISTER\033[0m\n\n\n\n");
+	printf("\n\n\n\033[34m1 -> LOG IN\n\n2 -> REGISTER\n\n3 -> EXIT\033[0m\n\n\n\n");
 
 	int option;
 	printf("\033[35mENTER YOUR OPTION :- \033[0m");
@@ -221,6 +237,9 @@ void welcome() {
 		case 2:
 			reg();
 			break;
+		case 3:
+		   	quit();
+		   	break;
 		default:
 			welcome();
 	}
