@@ -114,7 +114,7 @@ void account(){
 	printf("\033[32mWELCOME %s!\033[0m\n\n\n\n",user[j].username);
 	printf("\033[34m1 -> BALANCE INQUIRY\033[0m\n\n");
 	printf("\033[34m2 -> TRANSFER\033[0m\n\n\n\n");
-	printf("\033[34m3 -> LOG OUT\033[0m\n\n\n\n");
+	printf("\033[34m3 -> CHANGE PIN\033[0m\n\n\n\n");
 	printf("\033[34m4 -> LOG OUT\033[0m\n\n\n");
 	printf("\033[33mENTER YOUR CHOICE - \033[0m");
 	scanf("%d",&inp);
