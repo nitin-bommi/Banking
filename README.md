@@ -23,6 +23,8 @@ The Welcome screen contains 2 options.
 * Register
 Input is given as option number by the user.
 
+<img src="https://github.com/Nitin1901/Banking/blob/master/Sample/welcome.png" height=500>
+
 Once Log-in option is pressed,
 ```C
 login()
@@ -32,6 +34,8 @@ function is triggered.
 After logging in with proper credentials, two options are available:-
 * Balance enquiry
 * Transfer 
+
+<img src="https://github.com/Nitin1901/Banking/blob/master/Sample/account.png" height=500>
 
 ```C
 void account(){
@@ -61,5 +65,7 @@ void account(){
 Transfer is made based on user name and to perform a ssuccessful transaction, you need to enter the correct pin created during registration.
 
 Transfer is made based on user name and to perform a ssuccessful transaction, you need to enter the correct pin created during registration.
+
+<img src="https://github.com/Nitin1901/Banking/blob/master/Sample/transfer.png" height=500>
 
 Options for going back are simultaneously present.
